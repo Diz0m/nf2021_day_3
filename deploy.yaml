@@ -3,14 +3,19 @@
 # Notice that it doesn't garantee you an idempotent behaviour after repetitive execution
 - name: Execute kickstart script
   hosts: all
+  become: yes
   gather_facts: false
   tasks:
-    - name: Copy script
-      ansible.builtin.copy:
-        src: ./kickstart.sh
-        dest: /home/azadmin/kickstart.sh
-        mode: u=rwx,g=r,o=r
-    - name: Run script
-      ansible.builtin.shell: /home/azadmin/kickstart.sh
+  - name: Copy script
+    copy: src=./kickstart.sh dest=/home/azadmin/kickstart.sh mode=0777
+
+  - name: Copy web
+    copy: src=./web dest=/home/azadmin/ mode=0777
+
+  - name: chmod
+    shell: chmod +x /home/azadmin/kickstart.sh
+
+  - name: Run script
+    shell: /home/azadmin/kickstart.sh
 
 

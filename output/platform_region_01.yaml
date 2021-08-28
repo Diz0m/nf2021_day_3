@@ -1,0 +1,6 @@
+Distribution: Ubuntu 20.04.3 LTS
+Kernel: 5.8.0-1040-azure
+vCPUs: 1
+RAM_MB: 1923
+Boot_image: /boot/vmlinuz-5.8.0-1040-azure
+Python3: 3.8.10

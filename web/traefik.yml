@@ -1,0 +1,27 @@
+log:
+  level: "DEBUG"
+api:
+  dashboard: true
+  insecure: true
+
+entryPoints:
+  http:
+    address: ":80"
+  https:
+    address: ":443"
+
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    exposedByDefault: false
+  file:
+    filename: /etc/traefik/dynamic_conf.yml
+
+certificatesResolvers:
+  letsEncrypt:
+    acme:
+      email: postmaster@gfd-39-comp-05.az.skillscloud.company
+      storage: acme.json
+      caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
+      httpChallenge:
+        entryPoint: http

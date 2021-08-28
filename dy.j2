@@ -93,9 +93,9 @@ http:
 
         servers:
 
-          - url: "'{{ lookup('env', 'platform_01_public_ip') }}:8080"
-          - url: "'{{ lookup('env', 'platform_02_public_ip') }}:8080"
-          - url: "'{{ lookup('env', 'platform_03_public_ip') }}:8080"
+          - url: "{{ lookup('env', 'platform_01_public_ip') }}:8080"
+          - url: "{{ lookup('env', 'platform_02_public_ip') }}:8080"
+          - url: "{{ lookup('env', 'platform_03_public_ip') }}:8080"
 
         healthCheck:
 

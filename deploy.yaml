@@ -7,24 +7,24 @@ become: yes
 gather_facts: false
 tasks:
 - name: Render report template
-ansible.builtin.template:
-src: dy.j2
-dest: "{{inventory_hostname}}.yaml"
+  ansible.builtin.template:
+    src: dy.j2
+    dest: "{{inventory_hostname}}.yaml"
 
 - name: Fetch rendered reports
-ansible.builtin.fetch:
-src: "{{inventory_hostname}}.yaml"
-dest: "./web/dynamic_conf.yml"
-flat: yes
+  ansible.builtin.fetch:
+    src: "{{inventory_hostname}}.yaml"
+    dest: "./web/dynamic_conf.yml"
+    flat: yes
 
 - name: Copy script
-copy: src=./kickstart.sh dest=/home/azadmin/kickstart.sh mode=0777
+  copy: src=./kickstart.sh dest=/home/azadmin/kickstart.sh mode=0777
 
 - name: Copy web
-copy: src=./web dest=/home/azadmin/ mode=0777
+  copy: src=./web dest=/home/azadmin/ mode=0777
 
 - name: chmod
-shell: chmod +x /home/azadmin/kickstart.sh
+  shell: chmod +x /home/azadmin/kickstart.sh
 
 - name: Run script
-shell: /home/azadmin/kickstart.sh
+  shell: /home/azadmin/kickstart.sh

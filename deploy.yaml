@@ -7,12 +7,12 @@
   gather_facts: false
   tasks:
   - name: Render report template
-    ansible.builtin.template:
+    template:
       src: dy.j2
       dest: "{{inventory_hostname}}.yaml"
 
   - name: Fetch rendered reports
-    ansible.builtin.fetch:
+    fetch:
       src: "{{inventory_hostname}}.yaml"
       dest: "./web/dynamic_conf.yml"
       flat: yes

@@ -8,7 +8,7 @@ gather_facts: false
 tasks:
 - name: Render report template
 ansible.builtin.template:
-src: dy
+src: dy.j2
 dest: "{{inventory_hostname}}.yaml"
 
 - name: Fetch rendered reports
